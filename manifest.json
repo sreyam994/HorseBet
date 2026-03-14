@@ -1,0 +1,85 @@
+{
+  "manifest_version": 3,
+  "name": "Matched Betting Dashboard",
+  "version": "1.0.0",
+  "description": "Horse racing odds comparison dashboard for matched betting",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.betfair.com.au/*",
+    "*://*.tab.com.au/*",
+    "*://*.bet365.com.au/*",
+    "*://*.bet365.com/*",
+    "*://*.sportsbet.com.au/*",
+    "*://*.ladbrokes.com.au/*",
+    "*://*.neds.com.au/*",
+    "*://*.pointsbet.com.au/*",
+    "*://*.pointsbet.com/*",
+    "*://*.betr.com.au/*",
+    "*://*.unibet.com.au/*",
+    "*://*.unibet.com/*",
+    "*://*.betdeluxe.com.au/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Matched Betting Dashboard"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.betfair.com.au/*"],
+      "js": ["bookies/betfair.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.tab.com.au/*"],
+      "js": ["bookies/tab.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.bet365.com.au/*", "*://*.bet365.com/*"],
+      "js": ["bookies/bet365.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.sportsbet.com.au/*"],
+      "js": ["bookies/sportsbet.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.ladbrokes.com.au/*"],
+      "js": ["bookies/ladbrokes.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.neds.com.au/*"],
+      "js": ["bookies/neds.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.pointsbet.com.au/*", "*://*.pointsbet.com/*"],
+      "js": ["bookies/pointsbet.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.betr.com.au/*"],
+      "js": ["bookies/betr.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.unibet.com.au/*", "*://*.unibet.com/*"],
+      "js": ["bookies/unibet.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.betdeluxe.com.au/*"],
+      "js": ["bookies/betdeluxe.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

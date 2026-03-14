@@ -1,0 +1,23 @@
+// Fuzzy match helper - checks if bookmaker name matches any Betfair name
+function findMatchingBetfairName(bookmakeName, betfairNames) {
+  if (!betfairNames || betfairNames.length === 0) return null;
+  
+  const normalize = (str) => str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+  const normalizedBookie = normalize(bookmakeName);
+  
+  for (let betfairName of betfairNames) {
+    const normalizedBetfair = normalize(betfairName);
+    
+    // Exact match
+    if (normalizedBookie === normalizedBetfair) {
+      return betfairName;
+    }
+    
+    // Contains match (for cases like "Horse Name" vs "Horse Name Extra")
+    if (normalizedBookie.includes(normalizedBetfair) || normalizedBetfair.includes(normalizedBookie)) {
+      return betfairName;
+    }
+  }
+  
+  return null;
+}
